@@ -1,270 +1,307 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Will You Be My Valentine? 💗</title>
-    <style>
-        body {
-            margin: 0;
-            height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background: linear-gradient(45deg, #c8a2c8, #e6e6fa); /* Lavender gradient */
-            font-family: 'Comic Sans MS', cursive, sans-serif;
-            text-align: center;
-            overflow: hidden;
-            position: relative;
-        }
-        .container {
-            padding: 20px;
-            background: rgba(255, 255, 255, 0.8);
-            border-radius: 15px;
-            box-shadow: 0 0 30px rgba(138, 43, 226, 0.3); /* Lavender shadow */
-            z-index: 2;
-            max-width: 90%;
-        }
-        h1 {
-            color: #9370db; /* Medium purple */
-            font-size: 2em;
-            margin-bottom: 20px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
-        }
-        .buttons {
-            display: flex;
-            gap: 15px;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-        button {
-            padding: 12px 25px;
-            font-size: 1.2em;
-            border: none;
-            border-radius: 10px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-family: inherit;
-        }
-        #yesBtn {
-            background: #9370db; /* Medium purple */
-            color: white;
-        }
-        #noBtn {
-            background: #87ceeb; /* Sky blue */
-            color: white;
-            position: relative;
-        }
-        .bears {
-            position: absolute;
-            font-size: 40px;
-            display: none;
-            z-index: 3;
-        }
-        #polarBear {
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-        }
-        #brownBear {
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-        }
-        @keyframes chase {
-            0% { transform: translate(0, 0); }
-            25% { transform: translate(100px, -50px); }
-            50% { transform: translate(-100px, 50px); }
-            75% { transform: translate(50px, -100px); }
-            100% { transform: translate(0, 0); }
-        }
-        .celebrate {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            display: none;
-            z-index: 4;
-        }
-        .confetti {
-            position: absolute;
-            width: 8px;
-            height: 8px;
-            background: #9370db; /* Medium purple */
-            border-radius: 50%;
-            animation: confetti 3s linear;
-        }
-        @keyframes confetti {
-            0% { transform: translateY(0) rotate(0deg); opacity: 1; }
-            100% { transform: translateY(-100vh) rotate(360deg); opacity: 0; }
-        }
-
-        /* Tulip Field and Couple Styles */
-        .tulip-field {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: url('https://source.unsplash.com/1600x900/?tulips,sunrise') no-repeat center center/cover;
-            z-index: 1;
-            display: none;
-        }
-        .couple {
-            position: absolute;
-            bottom: 20%;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 150px;
-            height: 150px;
-            display: none;
-            z-index: 2;
-        }
-        .person {
-            position: absolute;
-            width: 50px;
-            height: 100px;
-            background: #fff;
-            border-radius: 50%;
-            bottom: 0;
-        }
-        .person.left {
-            left: 0;
-        }
-        .person.right {
-            right: 0;
-        }
-        .person::before {
-            content: '';
-            position: absolute;
-            width: 20px;
-            height: 20px;
-            background: #000;
-            border-radius: 50%;
-            top: 10px;
-            left: 50%;
-            transform: translateX(-50%);
-        }
-        .person::after {
-            content: '';
-            position: absolute;
-            width: 40px;
-            height: 10px;
-            background: #000;
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-        }
-
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            h1 {
-                font-size: 1.5em;
-            }
-            button {
-                padding: 10px 20px;
-                font-size: 1em;
-            }
-            .bears {
-                font-size: 30px;
-            }
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Will You Be My Valentine? 💗</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(45deg, #c8a2c8, #e6e6fa); /* Lavender gradient */
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+      text-align: center;
+      overflow: hidden;
+      position: relative;
+    }
+    .container {
+      padding: 20px;
+      background: rgba(255, 255, 255, 0.8);
+      border-radius: 15px;
+      box-shadow: 0 0 30px rgba(138, 43, 226, 0.3); /* Lavender shadow */
+      z-index: 2;
+      max-width: 90%;
+    }
+    h1 {
+      color: #9370db; /* Medium purple */
+      font-size: 2em;
+      margin-bottom: 20px;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+    }
+    .buttons {
+      display: flex;
+      gap: 15px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    button {
+      padding: 12px 25px;
+      font-size: 1.2em;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-family: inherit;
+    }
+    #yesBtn {
+      background: #9370db; /* Medium purple */
+      color: white;
+    }
+    #noBtn {
+      background: #87ceeb; /* Sky blue */
+      color: white;
+      position: relative;
+    }
+    .bears {
+      position: absolute;
+      font-size: 40px;
+      display: none;
+      z-index: 3;
+    }
+    #polarBear {
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+    #brownBear {
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+    @keyframes chase {
+      0% { transform: translate(0, 0); }
+      25% { transform: translate(100px, -50px); }
+      50% { transform: translate(-100px, 50px); }
+      75% { transform: translate(50px, -100px); }
+      100% { transform: translate(0, 0); }
+    }
+    .celebrate {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      display: none;
+      z-index: 4;
+    }
+    .confetti {
+      position: absolute;
+      width: 8px;
+      height: 8px;
+      background: #9370db; /* Medium purple */
+      border-radius: 50%;
+      animation: confetti 3s linear;
+    }
+    @keyframes confetti {
+      0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+      100% { transform: translateY(-100vh) rotate(360deg); opacity: 0; }
+    }
+    /* Stylish Collage Background */
+    .background {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0;
+      transition: opacity 1s ease;
+      z-index: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+    .bg-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      grid-template-rows: repeat(2, 1fr);
+      gap: 10px;
+      width: 100%;
+      height: 100%;
+    }
+    .bg-item {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    /* The quote panel uses a semi‑transparent overlay for readability */
+    .bg-item.quote {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(255, 255, 255, 0.7);
+      font-size: 1.5em;
+      padding: 20px;
+      text-align: center;
+      color: #9370db;
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+    }
+    /* Stick figures */
+    .couple {
+      position: fixed;
+      font-size: 40px;
+      display: none;
+      z-index: 3;
+      animation: float 3s ease-in-out infinite;
+    }
+    #person1 {
+      bottom: 20px;
+      left: 20px;
+      transform: rotate(-15deg);
+    }
+    #person2 {
+      bottom: 30px;
+      right: 20px;
+      transform: rotate(15deg);
+    }
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-20px); }
+    }
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      h1 {
+        font-size: 1.5em;
+      }
+      button {
+        padding: 10px 20px;
+        font-size: 1em;
+      }
+      .bears {
+        font-size: 30px;
+      }
+      .bg-item.quote {
+        font-size: 1.2em;
+        padding: 10px;
+      }
+    }
+  </style>
 </head>
 <body>
-    <div class="container">
-        <h1 id="question"> Will you be my Valentine? (Please please pleaseee 🌷🌷🌷)</h1>
-        <div class="buttons">
-            <button id="yesBtn" onclick="startChasing()">YES! 💗</button>
-            <button id="noBtn" onmouseover="dodgeButton()">Maroun gi </button>
-        </div>
+  <div class="container">
+    <h1 id="question">Will you be my Valentine? (Please please pleaseee 🌷🌷🌷)</h1>
+    <div class="buttons">
+      <button id="yesBtn" onclick="startChasing()">YES! 💗</button>
+      <button id="noBtn" onmouseover="dodgeButton()">Maroun gi</button>
     </div>
-    <div class="bears" id="polarBear">🐻‍❄️</div>
-    <div class="bears" id="brownBear">🐻</div>
-    <div class="celebrate" id="celebrate"></div>
-    <div class="tulip-field" id="tulipField"></div>
-    <div class="couple" id="couple">
-        <div class="person left"></div>
-        <div class="person right"></div>
+  </div>
+
+  <!-- Stylish Collage Background -->
+  <div class="background" id="background">
+    <div class="bg-grid">
+      <!-- Sunrise Panel -->
+      <img
+        src="https://images.unsplash.com/photo-1518837695005-2083093ee35b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
+        alt="Sunrise"
+        class="bg-item sunrise"
+      />
+      <!-- Pasta Panel -->
+      <img
+        src="https://images.unsplash.com/photo-1562967916-eb82221dfb7b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
+        alt="Pasta"
+        class="bg-item pasta"
+      />
+      <!-- Books Panel -->
+      <img
+        src="https://images.unsplash.com/photo-1512820790803-83ca734da794?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
+        alt="Books"
+        class="bg-item books"
+      />
+      <!-- Quote Panel -->
+      <div class="bg-item quote">
+        <p>"In the whispers of dawn, love sings its eternal song."<br />– Orpheus &amp; Eurydice</p>
+      </div>
     </div>
-    <script>
-        function startChasing() {
-            // Update the question text
-            const question = document.getElementById('question');
-            question.textContent = 'YESSSSSSS YAYYY YIPPIEEEEEEEE ';
+  </div>
 
-            // Hide the buttons
-            document.querySelector('.buttons').style.display = 'none';
+  <!-- Stick figures -->
+  <div class="couple" id="person1">🌸</div>
+  <div class="couple" id="person2">🌼</div>
 
-            // Show the bears
-            const polarBear = document.getElementById('polarBear');
-            const brownBear = document.getElementById('brownBear');
-            polarBear.style.display = 'block';
-            brownBear.style.display = 'block';
+  <!-- Bears -->
+  <div class="bears" id="polarBear">🐻‍❄️</div>
+  <div class="bears" id="brownBear">🐻</div>
 
-            // Animate the bears chasing each other in the middle
-            let angle = 0;
-            const radius = 100; // Radius of the circular motion
-            const speed = 0.02; // Speed of the animation
-            function animateBears() {
-                angle += speed;
+  <!-- Confetti -->
+  <div class="celebrate" id="celebrate"></div>
 
-                // Calculate positions for the bears
-                const polarX = Math.cos(angle) * radius;
-                const polarY = Math.sin(angle) * radius;
-                const brownX = Math.cos(angle + Math.PI) * radius;
-                const brownY = Math.sin(angle + Math.PI) * radius;
+  <script>
+    function startChasing() {
+      // Update the question text
+      const question = document.getElementById('question');
+      question.textContent = 'YESSSSSSS YAYYY YIPPIEEEEEEEE 🌷💗🎉';
 
-                // Apply transformations to the bears
-                polarBear.style.transform = `translate(${polarX}px, ${polarY}px)`;
-                brownBear.style.transform = `translate(${brownX}px, ${brownY}px)`;
+      // Fade in the collage background
+      const background = document.getElementById('background');
+      background.style.opacity = 0.8;
 
-                requestAnimationFrame(animateBears);
-            }
-            animateBears();
+      // Show stick figures
+      document.getElementById('person1').style.display = 'block';
+      document.getElementById('person2').style.display = 'block';
 
-            // Start confetti
-            startCelebration();
+      // Hide the buttons
+      document.querySelector('.buttons').style.display = 'none';
 
-            // Show the tulip field and couple
-            const tulipField = document.getElementById('tulipField');
-            const couple = document.getElementById('couple');
-            tulipField.style.display = 'block';
-            couple.style.display = 'flex';
-        }
+      // Show the bears
+      const polarBear = document.getElementById('polarBear');
+      const brownBear = document.getElementById('brownBear');
+      polarBear.style.display = 'block';
+      brownBear.style.display = 'block';
 
-        function dodgeButton() {
-            const noBtn = document.getElementById('noBtn');
-            const yesBtn = document.getElementById('yesBtn');
+      // Animate the bears chasing each other
+      let angle = 0;
+      const radius = 100;
+      const speed = 0.02;
+      function animateBears() {
+        angle += speed;
+        const polarX = Math.cos(angle) * radius;
+        const polarY = Math.sin(angle) * radius;
+        const brownX = Math.cos(angle + Math.PI) * radius;
+        const brownY = Math.sin(angle + Math.PI) * radius;
+        polarBear.style.transform = `translate(${polarX}px, ${polarY}px)`;
+        brownBear.style.transform = `translate(${brownX}px, ${brownY}px)`;
+        requestAnimationFrame(animateBears);
+      }
+      animateBears();
 
-            // Make Yes button bigger
-            const currentSize = parseFloat(getComputedStyle(yesBtn).fontSize);
-            yesBtn.style.fontSize = (currentSize + 2) + 'px';
+      // Start confetti
+      startCelebration();
+    }
 
-            // Move No button randomly (faster movement)
-            noBtn.style.transition = 'transform 0.1s ease'; // Faster transition
-            noBtn.style.transform = `translate(${Math.random() * 100 - 50}px, ${Math.random() * 100 - 50}px)`;
-        }
+    function dodgeButton() {
+      const noBtn = document.getElementById('noBtn');
+      const yesBtn = document.getElementById('yesBtn');
 
-        function startCelebration() {
-            const celebrate = document.getElementById('celebrate');
-            celebrate.style.display = 'block';
+      // Make the Yes button slightly larger
+      const currentSize = parseFloat(getComputedStyle(yesBtn).fontSize);
+      yesBtn.style.fontSize = (currentSize + 2) + 'px';
 
-            for (let i = 0; i < 100; i++) {
-                const confetti = document.createElement('div');
-                confetti.className = 'confetti';
-                confetti.style.left = Math.random() * 100 + 'vw';
-                confetti.style.animationDelay = Math.random() * 2 + 's';
-                confetti.style.backgroundColor = `hsl(${Math.random() * 360}, 70%, 60%)`;
-                celebrate.appendChild(confetti);
-            }
-        }
+      // Move the No button randomly for a playful dodge effect
+      noBtn.style.transition = 'transform 0.1s ease';
+      noBtn.style.transform = `translate(${Math.random() * 100 - 50}px, ${Math.random() * 100 - 50}px)`;
+    }
 
-        // Add some initial animation
-        document.body.style.opacity = 0;
-        setTimeout(() => document.body.style.opacity = 1, 100);
-    </script>
+    function startCelebration() {
+      const celebrate = document.getElementById('celebrate');
+      celebrate.style.display = 'block';
+
+      for (let i = 0; i < 100; i++) {
+        const confetti = document.createElement('div');
+        confetti.className = 'confetti';
+        confetti.style.left = Math.random() * 100 + 'vw';
+        confetti.style.animationDelay = Math.random() * 2 + 's';
+        confetti.style.backgroundColor = `hsl(${Math.random() * 360}, 70%, 60%)`;
+        celebrate.appendChild(confetti);
+      }
+    }
+
+    // Fade in the body for an initial smooth reveal
+    document.body.style.opacity = 0;
+    setTimeout(() => (document.body.style.opacity = 1), 100);
+  </script>
 </body>
 </html>
