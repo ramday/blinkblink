@@ -127,30 +127,37 @@
 </head>
 <body>
     <div class="container">
-        <h1>🌸 My Dearest Love, Will You Be My Valentine? 🌸</h1>
+        <h1 id="proposalText">🌸 Will you be my Valentine? (Please please pleaseee 🌷🌷🌷)</h1>
         <div class="buttons">
             <button id="yesBtn" onclick="startChasing()">YES! 💗</button>
             <button id="noBtn" onmouseover="dodgeButton()">Maroun gi 😅</button>
         </div>
     </div>
     <div class="collage">
-        <img src="https://source.unsplash.com/200x200/?lavender" alt="Lavender Field">
-        <img src="https://source.unsplash.com/200x200/?heart" alt="Heart">
-        <img src="https://source.unsplash.com/200x200/?roses" alt="Roses">
-        <img src="https://source.unsplash.com/200x200/?love" alt="Love">
+        <!-- Updated image URLs -->
+        <img src="https://images.unsplash.com/photo-1580894742597-87bc8789db3d?ixlib=rb-1.2.1&auto=format&fit=crop&w=200&q=80" alt="Lavender Field">
+        <img src="https://images.unsplash.com/photo-1583947215259-b3f071e5b255?ixlib=rb-1.2.1&auto=format&fit=crop&w=200&q=80" alt="Heart">
+        <img src="https://images.unsplash.com/photo-1583337130417-3346a1be7dee?ixlib=rb-1.2.1&auto=format&fit=crop&w=200&q=80" alt="Roses">
+        <img src="https://images.unsplash.com/photo-1583337130417-3346a1be7dee?ixlib=rb-1.2.1&auto=format&fit=crop&w=200&q=80" alt="Love">
     </div>
     <div class="bears" id="polarBear">🐻‍❄️</div>
     <div class="bears" id="brownBear">🐻</div>
     <div class="celebrate" id="celebrate"></div>
     <script>
         function startChasing() {
+            // Update the proposal text
+            const proposalText = document.getElementById('proposalText');
+            proposalText.textContent = "YESSSSSSS YAYYY YIPPIEEEEEEEE 🌷💗🎉";
+
             // Hide the buttons
             document.querySelector('.buttons').style.display = 'none';
+
             // Show the bears
             const polarBear = document.getElementById('polarBear');
             const brownBear = document.getElementById('brownBear');
             polarBear.style.display = 'block';
             brownBear.style.display = 'block';
+
             // Animate the bears chasing each other
             let angle = 0;
             const radius = 100;
@@ -166,24 +173,28 @@
                 requestAnimationFrame(animateBears);
             }
             animateBears();
+
             // Start confetti
             startCelebration();
         }
+
         function dodgeButton() {
             const noBtn = document.getElementById('noBtn');
             const yesBtn = document.getElementById('yesBtn');
-            
+
             // Make Yes button bigger
             const currentSize = parseFloat(getComputedStyle(yesBtn).fontSize);
             yesBtn.style.fontSize = (currentSize + 2) + 'px';
-            
-            // Move No button randomly
-            noBtn.style.transform = `translate(${Math.random() * 100 - 50}px, ${Math.random() * 100 - 50}px)`;
+
+            // Move No button randomly (faster movement)
+            noBtn.style.transition = 'transform 0.1s ease'; // Faster transition
+            noBtn.style.transform = `translate(${Math.random() * 200 - 100}px, ${Math.random() * 200 - 100}px)`;
         }
+
         function startCelebration() {
             const celebrate = document.getElementById('celebrate');
             celebrate.style.display = 'block';
-            
+
             for (let i = 0; i < 100; i++) {
                 const confetti = document.createElement('div');
                 confetti.className = 'confetti';
@@ -193,6 +204,7 @@
                 celebrate.appendChild(confetti);
             }
         }
+
         // Add some initial animation
         document.body.style.opacity = 0;
         setTimeout(() => document.body.style.opacity = 1, 100);
