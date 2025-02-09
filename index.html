@@ -11,34 +11,30 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            background: linear-gradient(45deg, #ff9a9e, #fad0c4);
+            background: linear-gradient(45deg, #c8a2c8, #e6e6fa); /* Lavender gradient */
             font-family: 'Comic Sans MS', cursive, sans-serif;
             text-align: center;
             overflow: hidden;
             position: relative;
         }
-
         .container {
             padding: 30px;
             background: rgba(255, 255, 255, 0.8);
             border-radius: 20px;
-            box-shadow: 0 0 30px rgba(255, 105, 180, 0.3);
+            box-shadow: 0 0 30px rgba(138, 43, 226, 0.3); /* Lavender shadow */
             z-index: 2;
         }
-
         h1 {
-            color: #ff69b4;
+            color: #9370db; /* Medium purple */
             font-size: 2.5em;
             margin-bottom: 30px;
             text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
         }
-
         .buttons {
             display: flex;
             gap: 20px;
             justify-content: center;
         }
-
         button {
             padding: 15px 30px;
             font-size: 1.5em;
@@ -48,37 +44,31 @@
             transition: all 0.3s ease;
             font-family: inherit;
         }
-
         #yesBtn {
-            background: #ff69b4;
+            background: #9370db; /* Medium purple */
             color: white;
         }
-
         #noBtn {
-            background: #87ceeb;
+            background: #87ceeb; /* Sky blue */
             color: white;
             position: relative;
         }
-
         .bears {
             position: absolute;
             font-size: 60px;
             display: none;
             z-index: 3;
         }
-
         #polarBear {
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
         }
-
         #brownBear {
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
         }
-
         @keyframes chase {
             0% { transform: translate(0, 0); }
             25% { transform: translate(200px, -100px); }
@@ -86,7 +76,6 @@
             75% { transform: translate(100px, -200px); }
             100% { transform: translate(0, 0); }
         }
-
         .collage {
             position: absolute;
             top: 0;
@@ -96,7 +85,6 @@
             z-index: 1;
             opacity: 0.6;
         }
-
         .collage img {
             position: absolute;
             width: 200px;
@@ -105,17 +93,14 @@
             box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
             animation: fadeInOut 12s infinite;
         }
-
         .collage img:nth-child(1) { top: 10%; left: 5%; animation-delay: 0s; }
         .collage img:nth-child(2) { top: 20%; right: 10%; animation-delay: 3s; }
         .collage img:nth-child(3) { bottom: 15%; left: 15%; animation-delay: 6s; }
         .collage img:nth-child(4) { bottom: 10%; right: 5%; animation-delay: 9s; }
-
         @keyframes fadeInOut {
             0%, 100% { opacity: 0; }
             25%, 75% { opacity: 1; }
         }
-
         .celebrate {
             position: fixed;
             top: 0;
@@ -126,16 +111,14 @@
             display: none;
             z-index: 4;
         }
-
         .confetti {
             position: absolute;
             width: 10px;
             height: 10px;
-            background: #ff69b4;
+            background: #9370db; /* Medium purple */
             border-radius: 50%;
             animation: confetti 3s linear;
         }
-
         @keyframes confetti {
             0% { transform: translateY(0) rotate(0deg); opacity: 1; }
             100% { transform: translateY(-100vh) rotate(360deg); opacity: 0; }
@@ -150,54 +133,42 @@
             <button id="noBtn" onmouseover="dodgeButton()">Maroun gi 😅</button>
         </div>
     </div>
-
     <div class="collage">
-        <img src="https://source.unsplash.com/200x200/?sunrise" alt="Sunrise">
-        <img src="https://source.unsplash.com/200x200/?pasta" alt="Pasta">
-        <img src="https://source.unsplash.com/200x200/?tulips" alt="Tulips">
-        <img src="https://source.unsplash.com/200x200/?books" alt="Books">
+        <img src="https://source.unsplash.com/200x200/?lavender" alt="Lavender Field">
+        <img src="https://source.unsplash.com/200x200/?heart" alt="Heart">
+        <img src="https://source.unsplash.com/200x200/?roses" alt="Roses">
+        <img src="https://source.unsplash.com/200x200/?love" alt="Love">
     </div>
-
     <div class="bears" id="polarBear">🐻‍❄️</div>
     <div class="bears" id="brownBear">🐻</div>
-
     <div class="celebrate" id="celebrate"></div>
-
     <script>
         function startChasing() {
             // Hide the buttons
             document.querySelector('.buttons').style.display = 'none';
-
             // Show the bears
             const polarBear = document.getElementById('polarBear');
             const brownBear = document.getElementById('brownBear');
             polarBear.style.display = 'block';
             brownBear.style.display = 'block';
-
             // Animate the bears chasing each other
             let angle = 0;
             const radius = 100;
             const speed = 0.02;
-
             function animateBears() {
                 angle += speed;
                 const polarX = Math.cos(angle) * radius;
                 const polarY = Math.sin(angle) * radius;
                 const brownX = Math.cos(angle + Math.PI) * radius;
                 const brownY = Math.sin(angle + Math.PI) * radius;
-
                 polarBear.style.transform = `translate(${polarX}px, ${polarY}px)`;
                 brownBear.style.transform = `translate(${brownX}px, ${brownY}px)`;
-
                 requestAnimationFrame(animateBears);
             }
-
             animateBears();
-
             // Start confetti
             startCelebration();
         }
-
         function dodgeButton() {
             const noBtn = document.getElementById('noBtn');
             const yesBtn = document.getElementById('yesBtn');
@@ -209,7 +180,6 @@
             // Move No button randomly
             noBtn.style.transform = `translate(${Math.random() * 100 - 50}px, ${Math.random() * 100 - 50}px)`;
         }
-
         function startCelebration() {
             const celebrate = document.getElementById('celebrate');
             celebrate.style.display = 'block';
@@ -223,8 +193,7 @@
                 celebrate.appendChild(confetti);
             }
         }
-
-        // Add some initial animationdd
+        // Add some initial animation
         document.body.style.opacity = 0;
         setTimeout(() => document.body.style.opacity = 1, 100);
     </script>
