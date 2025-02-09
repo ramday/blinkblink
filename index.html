@@ -5,31 +5,32 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Will You Be My Valentine? 💗</title>
   <style>
+    /* Global Styles */
     body {
       margin: 0;
       height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      background: linear-gradient(45deg, #c8a2c8, #e6e6fa); /* Lavender gradient */
-      font-family: 'Comic Sans MS', cursive, sans-serif;
-      text-align: center;
       overflow: hidden;
       position: relative;
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+      text-align: center;
+      background: linear-gradient(45deg, #c8a2c8, #e6e6fa); /* fallback gradient */
+      opacity: 0;
+      transition: opacity 1s ease;
     }
     .container {
       padding: 20px;
       background: rgba(255, 255, 255, 0.8);
       border-radius: 15px;
-      box-shadow: 0 0 30px rgba(138, 43, 226, 0.3); /* Lavender shadow */
+      box-shadow: 0 0 30px rgba(138, 43, 226, 0.3);
       z-index: 2;
       max-width: 90%;
+      position: relative;
     }
     h1 {
-      color: #9370db; /* Medium purple */
+      color: #9370db;
       font-size: 2em;
       margin-bottom: 20px;
-      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
     }
     .buttons {
       display: flex;
@@ -47,26 +48,23 @@
       font-family: inherit;
     }
     #yesBtn {
-      background: #9370db; /* Medium purple */
+      background: #9370db;
       color: white;
     }
     #noBtn {
-      background: #87ceeb; /* Sky blue */
+      background: #87ceeb;
       color: white;
       position: relative;
     }
+    
+    /* Animated Bears & Stick Figures (unchanged) */
     .bears {
       position: absolute;
       font-size: 40px;
       display: none;
       z-index: 3;
     }
-    #polarBear {
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-    }
-    #brownBear {
+    #polarBear, #brownBear {
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
@@ -78,69 +76,6 @@
       75% { transform: translate(50px, -100px); }
       100% { transform: translate(0, 0); }
     }
-    .celebrate {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      pointer-events: none;
-      display: none;
-      z-index: 4;
-    }
-    .confetti {
-      position: absolute;
-      width: 8px;
-      height: 8px;
-      background: #9370db; /* Medium purple */
-      border-radius: 50%;
-      animation: confetti 3s linear;
-    }
-    @keyframes confetti {
-      0% { transform: translateY(0) rotate(0deg); opacity: 1; }
-      100% { transform: translateY(-100vh) rotate(360deg); opacity: 0; }
-    }
-    /* Stylish Collage Background */
-    .background {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      opacity: 0;
-      transition: opacity 1s ease;
-      z-index: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      overflow: hidden;
-    }
-    .bg-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      grid-template-rows: repeat(2, 1fr);
-      gap: 10px;
-      width: 100%;
-      height: 100%;
-    }
-    .bg-item {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-    /* Quote panel style */
-    .bg-item.quote {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: rgba(255, 255, 255, 0.7);
-      font-size: 1.5em;
-      padding: 20px;
-      text-align: center;
-      color: #9370db;
-      font-family: 'Comic Sans MS', cursive, sans-serif;
-    }
-    /* Stick figures */
     .couple {
       position: fixed;
       font-size: 40px;
@@ -162,26 +97,78 @@
       0%, 100% { transform: translateY(0); }
       50% { transform: translateY(-20px); }
     }
+    .celebrate {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      display: none;
+      z-index: 4;
+    }
+    .confetti {
+      position: absolute;
+      width: 8px;
+      height: 8px;
+      background: #9370db;
+      border-radius: 50%;
+      animation: confetti 3s linear;
+    }
+    @keyframes confetti {
+      0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+      100% { transform: translateY(-100vh) rotate(360deg); opacity: 0; }
+    }
+    
+    /* New Floating Hearts Background */
+    .heart-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      overflow: hidden;
+      pointer-events: none;
+      /* A warm gradient for a romantic feel */
+      background: linear-gradient(45deg, #fceabb, #f8b500);
+    }
+    .heart {
+      position: absolute;
+      color: #ff3366;
+      font-size: 24px;
+      opacity: 0.8;
+      animation: floatHeart linear infinite;
+    }
+    @keyframes floatHeart {
+      0% {
+        transform: translateY(100vh) rotate(0deg);
+        opacity: 0;
+      }
+      10% {
+        opacity: 1;
+      }
+      50% {
+        transform: translateY(50vh) rotate(45deg);
+      }
+      100% {
+        transform: translateY(-10vh) rotate(90deg);
+        opacity: 0;
+      }
+    }
+    
     /* Responsive Design */
     @media (max-width: 768px) {
-      h1 {
-        font-size: 1.5em;
-      }
-      button {
-        padding: 10px 20px;
-        font-size: 1em;
-      }
-      .bears {
-        font-size: 30px;
-      }
-      .bg-item.quote {
-        font-size: 1.2em;
-        padding: 10px;
-      }
+      h1 { font-size: 1.5em; }
+      button { padding: 10px 20px; font-size: 1em; }
+      .bears { font-size: 30px; }
     }
   </style>
 </head>
 <body>
+  <!-- Floating Hearts Background -->
+  <div class="heart-bg" id="heart-bg"></div>
+  
   <div class="container">
     <h1 id="question">Will you be my Valentine? (Please please pleaseee 🌷🌷🌷)</h1>
     <div class="buttons">
@@ -189,69 +176,53 @@
       <button id="noBtn" onmouseover="dodgeButton()">Maroun gi</button>
     </div>
   </div>
-
-  <!-- Stylish Collage Background -->
-  <div class="background" id="background">
-    <div class="bg-grid">
-      <!-- Sunrise Panel -->
-      <img
-        src="https://images.unsplash.com/photo-1518837695005-2083093ee35b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
-        alt="Sunrise"
-        class="bg-item sunrise"
-      />
-      <!-- Pasta Panel -->
-      <img
-        src="https://images.unsplash.com/photo-1562967916-eb82221dfb7b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
-        alt="Pasta"
-        class="bg-item pasta"
-      />
-      <!-- Books Panel -->
-      <img
-        src="https://images.unsplash.com/photo-1512820790803-83ca734da794?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
-        alt="Books"
-        class="bg-item books"
-      />
-      <!-- Quote Panel -->
-      <div class="bg-item quote">
-        <p>"In the whispers of dawn, love sings its eternal song."<br>– Orpheus &amp; Eurydice</p>
-      </div>
-    </div>
-  </div>
-
-  <!-- Stick figures -->
+  
+  <!-- Stick Figures -->
   <div class="couple" id="person1">🌸</div>
   <div class="couple" id="person2">🌼</div>
-
+  
   <!-- Bears -->
   <div class="bears" id="polarBear">🐻‍❄️</div>
   <div class="bears" id="brownBear">🐻</div>
-
+  
   <!-- Confetti -->
   <div class="celebrate" id="celebrate"></div>
-
+  
   <script>
+    // Create floating hearts dynamically
+    function createHearts() {
+      const heartBg = document.getElementById('heart-bg');
+      for (let i = 0; i < 30; i++) {
+        const heart = document.createElement('div');
+        heart.classList.add('heart');
+        heart.textContent = '❤️';
+        heart.style.left = Math.random() * 100 + 'vw';
+        heart.style.fontSize = (Math.random() * 20 + 20) + 'px';
+        heart.style.animationDuration = (Math.random() * 5 + 5) + 's';
+        heart.style.animationDelay = (Math.random() * 5) + 's';
+        heartBg.appendChild(heart);
+      }
+    }
+    document.addEventListener("DOMContentLoaded", createHearts);
+    
     function startChasing() {
       // Update the question text
       const question = document.getElementById('question');
       question.textContent = 'YESSSSSSS YAYYY YIPPIEEEEEEEE 🌷💗🎉';
-
-      // Fade in the collage background
-      const background = document.getElementById('background');
-      background.style.opacity = 0.8;
-
+  
       // Show stick figures
       document.getElementById('person1').style.display = 'block';
       document.getElementById('person2').style.display = 'block';
-
+  
       // Hide the buttons
       document.querySelector('.buttons').style.display = 'none';
-
+  
       // Show the bears
       const polarBear = document.getElementById('polarBear');
       const brownBear = document.getElementById('brownBear');
       polarBear.style.display = 'block';
       brownBear.style.display = 'block';
-
+  
       // Animate the bears chasing each other
       let angle = 0;
       const radius = 100;
@@ -267,28 +238,28 @@
         requestAnimationFrame(animateBears);
       }
       animateBears();
-
+  
       // Start confetti
       startCelebration();
     }
-
+    
     function dodgeButton() {
       const noBtn = document.getElementById('noBtn');
       const yesBtn = document.getElementById('yesBtn');
-
-      // Make the Yes button slightly larger
+  
+      // Slightly increase the Yes button size
       const currentSize = parseFloat(getComputedStyle(yesBtn).fontSize);
       yesBtn.style.fontSize = (currentSize + 2) + 'px';
-
-      // Move the No button randomly for a playful dodge effect
+  
+      // Randomly reposition the No button for a playful effect
       noBtn.style.transition = 'transform 0.1s ease';
       noBtn.style.transform = `translate(${Math.random() * 100 - 50}px, ${Math.random() * 100 - 50}px)`;
     }
-
+    
     function startCelebration() {
       const celebrate = document.getElementById('celebrate');
       celebrate.style.display = 'block';
-
+  
       for (let i = 0; i < 100; i++) {
         const confetti = document.createElement('div');
         confetti.className = 'confetti';
@@ -298,10 +269,11 @@
         celebrate.appendChild(confetti);
       }
     }
-
-    // Fade in the body for an initial smooth reveal
-    document.body.style.opacity = 0;
-    setTimeout(() => { document.body.style.opacity = 1; }, 100);
+    
+    // Smooth fade-in effect for the page
+    document.addEventListener("DOMContentLoaded", () => {
+      document.body.style.opacity = 1;
+    });
   </script>
 </body>
 </html>
