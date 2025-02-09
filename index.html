@@ -128,7 +128,7 @@
       height: 100%;
       object-fit: cover;
     }
-    /* The quote panel uses a semi‑transparent overlay for readability */
+    /* Quote panel style */
     .bg-item.quote {
       display: flex;
       align-items: center;
@@ -213,7 +213,7 @@
       />
       <!-- Quote Panel -->
       <div class="bg-item quote">
-        <p>"In the whispers of dawn, love sings its eternal song."<br />– Orpheus &amp; Eurydice</p>
+        <p>"In the whispers of dawn, love sings its eternal song."<br>– Orpheus &amp; Eurydice</p>
       </div>
     </div>
   </div>
@@ -301,7 +301,7 @@
 
     // Fade in the body for an initial smooth reveal
     document.body.style.opacity = 0;
-    setTimeout(() => (document.body.style.opacity = 1), 100);
+    setTimeout(() => { document.body.style.opacity = 1; }, 100);
   </script>
 </body>
 </html>
