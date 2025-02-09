@@ -100,7 +100,6 @@
             0% { transform: translateY(0) rotate(0deg); opacity: 1; }
             100% { transform: translateY(-100vh) rotate(360deg); opacity: 0; }
         }
-
         /* Responsive Design */
         @media (max-width: 768px) {
             h1 {
@@ -118,10 +117,10 @@
 </head>
 <body>
     <div class="container">
-        <h1 id="question">🌸 Will you be my Valentine? (Please please pleaseee 🌷🌷🌷)</h1>
+        <h1 id="question"> Will you be my Valentine? (Please please pleaseee 🌷🌷🌷)</h1>
         <div class="buttons">
             <button id="yesBtn" onclick="startChasing()">YES! 💗</button>
-            <button id="noBtn" onmouseover="dodgeButton()">Maroun gi 😅</button>
+            <button id="noBtn" onmouseover="dodgeButton()">Maroun gi </button>
         </div>
     </div>
     <div class="bears" id="polarBear">🐻‍❄️</div>
@@ -131,52 +130,62 @@
         function startChasing() {
             // Update the question text
             const question = document.getElementById('question');
-            question.textContent = 'YESSSSSSS YAYYY YIPPIEEEEEEEE 💖💖💖';
+            question.textContent = 'YESSSSSSS YAYYY YIPPIEEEEEEEE ';
 
             // Hide the buttons
             document.querySelector('.buttons').style.display = 'none';
-            
+
             // Show the bears
             const polarBear = document.getElementById('polarBear');
             const brownBear = document.getElementById('brownBear');
             polarBear.style.display = 'block';
             brownBear.style.display = 'block';
-            
-            // Animate the bears chasing each other
+
+            // Get the position of the updated text
+            const questionRect = question.getBoundingClientRect();
+
+            // Animate the bears chasing around the text
             let angle = 0;
-            const radius = 100;
-            const speed = 0.02;
+            const radius = 100; // Radius of the circular motion
+            const speed = 0.02; // Speed of the animation
             function animateBears() {
                 angle += speed;
-                const polarX = Math.cos(angle) * radius;
-                const polarY = Math.sin(angle) * radius;
-                const brownX = Math.cos(angle + Math.PI) * radius;
-                const brownY = Math.sin(angle + Math.PI) * radius;
+
+                // Calculate positions for the bears
+                const polarX = Math.cos(angle) * radius + questionRect.left + questionRect.width / 2;
+                const polarY = Math.sin(angle) * radius + questionRect.top + questionRect.height / 2;
+                const brownX = Math.cos(angle + Math.PI) * radius + questionRect.left + questionRect.width / 2;
+                const brownY = Math.sin(angle + Math.PI) * radius + questionRect.top + questionRect.height / 2;
+
+                // Apply transformations to the bears
                 polarBear.style.transform = `translate(${polarX}px, ${polarY}px)`;
                 brownBear.style.transform = `translate(${brownX}px, ${brownY}px)`;
+
                 requestAnimationFrame(animateBears);
             }
             animateBears();
-            
+
             // Start confetti
             startCelebration();
         }
+
         function dodgeButton() {
             const noBtn = document.getElementById('noBtn');
             const yesBtn = document.getElementById('yesBtn');
-            
+
             // Make Yes button bigger
             const currentSize = parseFloat(getComputedStyle(yesBtn).fontSize);
             yesBtn.style.fontSize = (currentSize + 2) + 'px';
-            
+
             // Move No button randomly (faster movement)
             noBtn.style.transition = 'transform 0.1s ease'; // Faster transition
             noBtn.style.transform = `translate(${Math.random() * 100 - 50}px, ${Math.random() * 100 - 50}px)`;
         }
+
         function startCelebration() {
             const celebrate = document.getElementById('celebrate');
             celebrate.style.display = 'block';
-            
+
             for (let i = 0; i < 100; i++) {
                 const confetti = document.createElement('div');
                 confetti.className = 'confetti';
@@ -186,6 +195,7 @@
                 celebrate.appendChild(confetti);
             }
         }
+
         // Add some initial animation
         document.body.style.opacity = 0;
         setTimeout(() => document.body.style.opacity = 1, 100);
