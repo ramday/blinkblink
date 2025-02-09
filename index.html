@@ -118,7 +118,7 @@
 </head>
 <body>
     <div class="container">
-        <h1> Will you be my Valentine? (Please please pleaseee 🌷🌷🌷)</h1>
+        <h1 id="question">🌸 Will you be my Valentine? (Please please pleaseee 🌷🌷🌷)</h1>
         <div class="buttons">
             <button id="yesBtn" onclick="startChasing()">YES! 💗</button>
             <button id="noBtn" onmouseover="dodgeButton()">Maroun gi 😅</button>
@@ -129,13 +129,19 @@
     <div class="celebrate" id="celebrate"></div>
     <script>
         function startChasing() {
+            // Update the question text
+            const question = document.getElementById('question');
+            question.textContent = 'YESSSSSSS YAYYY YIPPIEEEEEEEE 💖💖💖';
+
             // Hide the buttons
             document.querySelector('.buttons').style.display = 'none';
+            
             // Show the bears
             const polarBear = document.getElementById('polarBear');
             const brownBear = document.getElementById('brownBear');
             polarBear.style.display = 'block';
             brownBear.style.display = 'block';
+            
             // Animate the bears chasing each other
             let angle = 0;
             const radius = 100;
@@ -151,6 +157,7 @@
                 requestAnimationFrame(animateBears);
             }
             animateBears();
+            
             // Start confetti
             startCelebration();
         }
