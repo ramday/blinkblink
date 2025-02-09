@@ -100,6 +100,64 @@
             0% { transform: translateY(0) rotate(0deg); opacity: 1; }
             100% { transform: translateY(-100vh) rotate(360deg); opacity: 0; }
         }
+
+        /* Tulip Field and Couple Styles */
+        .tulip-field {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://source.unsplash.com/1600x900/?tulips,sunrise') no-repeat center center/cover;
+            z-index: 1;
+            display: none;
+        }
+        .couple {
+            position: absolute;
+            bottom: 20%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 150px;
+            height: 150px;
+            display: none;
+            z-index: 2;
+        }
+        .person {
+            position: absolute;
+            width: 50px;
+            height: 100px;
+            background: #fff;
+            border-radius: 50%;
+            bottom: 0;
+        }
+        .person.left {
+            left: 0;
+        }
+        .person.right {
+            right: 0;
+        }
+        .person::before {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: #000;
+            border-radius: 50%;
+            top: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        .person::after {
+            content: '';
+            position: absolute;
+            width: 40px;
+            height: 10px;
+            background: #000;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
         /* Responsive Design */
         @media (max-width: 768px) {
             h1 {
@@ -126,6 +184,11 @@
     <div class="bears" id="polarBear">🐻‍❄️</div>
     <div class="bears" id="brownBear">🐻</div>
     <div class="celebrate" id="celebrate"></div>
+    <div class="tulip-field" id="tulipField"></div>
+    <div class="couple" id="couple">
+        <div class="person left"></div>
+        <div class="person right"></div>
+    </div>
     <script>
         function startChasing() {
             // Update the question text
@@ -141,10 +204,7 @@
             polarBear.style.display = 'block';
             brownBear.style.display = 'block';
 
-            // Get the position of the updated text
-            const questionRect = question.getBoundingClientRect();
-
-            // Animate the bears chasing around the text
+            // Animate the bears chasing each other in the middle
             let angle = 0;
             const radius = 100; // Radius of the circular motion
             const speed = 0.02; // Speed of the animation
@@ -152,10 +212,10 @@
                 angle += speed;
 
                 // Calculate positions for the bears
-                const polarX = Math.cos(angle) * radius + questionRect.left + questionRect.width / 2;
-                const polarY = Math.sin(angle) * radius + questionRect.top + questionRect.height / 2;
-                const brownX = Math.cos(angle + Math.PI) * radius + questionRect.left + questionRect.width / 2;
-                const brownY = Math.sin(angle + Math.PI) * radius + questionRect.top + questionRect.height / 2;
+                const polarX = Math.cos(angle) * radius;
+                const polarY = Math.sin(angle) * radius;
+                const brownX = Math.cos(angle + Math.PI) * radius;
+                const brownY = Math.sin(angle + Math.PI) * radius;
 
                 // Apply transformations to the bears
                 polarBear.style.transform = `translate(${polarX}px, ${polarY}px)`;
@@ -167,6 +227,12 @@
 
             // Start confetti
             startCelebration();
+
+            // Show the tulip field and couple
+            const tulipField = document.getElementById('tulipField');
+            const couple = document.getElementById('couple');
+            tulipField.style.display = 'block';
+            couple.style.display = 'flex';
         }
 
         function dodgeButton() {
