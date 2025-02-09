@@ -11,51 +11,53 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            background: linear-gradient(45deg, #E6E6FA, #D8BFD8);
+            background: linear-gradient(45deg, #c8a2c8, #e6e6fa); /* Lavender gradient */
             font-family: 'Comic Sans MS', cursive, sans-serif;
             text-align: center;
             overflow: hidden;
             position: relative;
         }
         .container {
-            padding: 30px;
+            padding: 20px;
             background: rgba(255, 255, 255, 0.8);
-            border-radius: 20px;
-            box-shadow: 0 0 30px rgba(255, 105, 180, 0.3);
+            border-radius: 15px;
+            box-shadow: 0 0 30px rgba(138, 43, 226, 0.3); /* Lavender shadow */
             z-index: 2;
+            max-width: 90%;
         }
         h1 {
-            color: #9370DB;
-            font-size: 2.5em;
-            margin-bottom: 30px;
+            color: #9370db; /* Medium purple */
+            font-size: 2em;
+            margin-bottom: 20px;
             text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
         }
         .buttons {
             display: flex;
-            gap: 20px;
+            gap: 15px;
             justify-content: center;
+            flex-wrap: wrap;
         }
         button {
-            padding: 15px 30px;
-            font-size: 1.5em;
+            padding: 12px 25px;
+            font-size: 1.2em;
             border: none;
-            border-radius: 15px;
+            border-radius: 10px;
             cursor: pointer;
             transition: all 0.3s ease;
             font-family: inherit;
         }
         #yesBtn {
-            background: #9370DB;
+            background: #9370db; /* Medium purple */
             color: white;
         }
         #noBtn {
-            background: #87ceeb;
+            background: #87ceeb; /* Sky blue */
             color: white;
             position: relative;
         }
         .bears {
             position: absolute;
-            font-size: 60px;
+            font-size: 40px;
             display: none;
             z-index: 3;
         }
@@ -71,37 +73,10 @@
         }
         @keyframes chase {
             0% { transform: translate(0, 0); }
-            25% { transform: translate(200px, -100px); }
-            50% { transform: translate(-200px, 100px); }
-            75% { transform: translate(100px, -200px); }
+            25% { transform: translate(100px, -50px); }
+            50% { transform: translate(-100px, 50px); }
+            75% { transform: translate(50px, -100px); }
             100% { transform: translate(0, 0); }
-        }
-        .collage {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 1;
-            opacity: 0.6;
-        }
-        .collage img {
-            position: absolute;
-            width: 200px;
-            height: 200px;
-            border-radius: 20px;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
-            animation: fadeInOut 12s infinite;
-        }
-        .collage img:nth-child(1) { top: 10%; left: 5%; animation-delay: 0s; }
-        .collage img:nth-child(2) { top: 20%; right: 10%; animation-delay: 3s; }
-        .collage img:nth-child(3) { bottom: 15%; left: 15%; animation-delay: 6s; }
-        .collage img:nth-child(4) { bottom: 10%; right: 5%; animation-delay: 9s; }
-        .collage img:nth-child(5) { top: 30%; left: 25%; animation-delay: 12s; }
-        .collage img:nth-child(6) { bottom: 20%; right: 20%; animation-delay: 15s; }
-        @keyframes fadeInOut {
-            0%, 100% { opacity: 0; }
-            25%, 75% { opacity: 1; }
         }
         .celebrate {
             position: fixed;
@@ -115,9 +90,9 @@
         }
         .confetti {
             position: absolute;
-            width: 10px;
-            height: 10px;
-            background: #9370DB;
+            width: 8px;
+            height: 8px;
+            background: #9370db; /* Medium purple */
             border-radius: 50%;
             animation: confetti 3s linear;
         }
@@ -125,23 +100,29 @@
             0% { transform: translateY(0) rotate(0deg); opacity: 1; }
             100% { transform: translateY(-100vh) rotate(360deg); opacity: 0; }
         }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 1.5em;
+            }
+            button {
+                padding: 10px 20px;
+                font-size: 1em;
+            }
+            .bears {
+                font-size: 30px;
+            }
+        }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>🌸 My Dearest Love, Will You Be My Valentine? 🌸</h1>
+        <h1>🌸 Will you be my Valentine? (Please please pleaseee 🌷🌷🌷)</h1>
         <div class="buttons">
             <button id="yesBtn" onclick="startChasing()">YES! 💗</button>
             <button id="noBtn" onmouseover="dodgeButton()">Maroun gi 😅</button>
         </div>
-    </div>
-    <div class="collage">
-        <img src="https://source.unsplash.com/200x200/?sunrise" alt="Sunrise" onerror="this.src='fallback-sunrise.jpg';">
-        <img src="https://source.unsplash.com/200x200/?books" alt="Books" onerror="this.src='fallback-books.jpg';">
-        <img src="https://source.unsplash.com/200x200/?sky" alt="Pretty Sky" onerror="this.src='fallback-sky.jpg';">
-        <img src="https://source.unsplash.com/200x200/?pasta" alt="Pasta" onerror="this.src='fallback-pasta.jpg';">
-        <img src="https://source.unsplash.com/200x200/?tulips" alt="Tulips" onerror="this.src='fallback-tulips.jpg';">
-        <img src="https://source.unsplash.com/200x200/?quote" alt="Orpheus and Eurydice Turning Back Quote" onerror="this.src='fallback-quote.jpg';">
     </div>
     <div class="bears" id="polarBear">🐻‍❄️</div>
     <div class="bears" id="brownBear">🐻</div>
@@ -181,7 +162,8 @@
             const currentSize = parseFloat(getComputedStyle(yesBtn).fontSize);
             yesBtn.style.fontSize = (currentSize + 2) + 'px';
             
-            // Move No button randomly
+            // Move No button randomly (faster movement)
+            noBtn.style.transition = 'transform 0.1s ease'; // Faster transition
             noBtn.style.transform = `translate(${Math.random() * 100 - 50}px, ${Math.random() * 100 - 50}px)`;
         }
         function startCelebration() {
